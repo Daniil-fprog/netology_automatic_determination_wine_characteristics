@@ -34,7 +34,7 @@
   },
   "aroma_notes": [{"label": "красные ягоды", "probability": 0.71}],
   "taste_notes": [{"label": "пряности", "probability": 0.61}],
-  "model_mode": "weak_supervision_demo"
+  "model_mode": "supervised"
 }
 ```
 
