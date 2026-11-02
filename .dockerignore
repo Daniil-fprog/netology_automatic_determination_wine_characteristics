@@ -1,0 +1,8 @@
+.git
+.DS_Store
+__pycache__
+.pytest_cache
+notebooks
+data
+tests
+*.pyc
