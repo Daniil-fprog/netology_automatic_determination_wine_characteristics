@@ -1,0 +1,145 @@
+{
+  "info": {
+    "_postman_id": "781559cb-e894-4ac5-bf80-5dedcfe1032f",
+    "name": "Wine Characteristic API",
+    "description": "Коллекция основных запросов к сервису определения характеристик вина по текстовому описанию. Полный контракт приведён в docs/api.md.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "health"
+          ]
+        },
+        "description": "Проверяет готовность сервиса и факт успешной загрузки модели. Возвращает 200 при готовности или 503, если модель недоступна."
+      },
+      "response": []
+    },
+    {
+      "name": "Model Info",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/model/info",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "model",
+            "info"
+          ]
+        },
+        "description": "Возвращает режим модели, число обучающих объектов, список целей и метаданные bundle."
+      },
+      "response": []
+    },
+    {
+      "name": "Predict",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"description\": \"Красное вино с ароматом вишни и пряностей, плотным вкусом и мягкими танинами.\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/predict",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "predict"
+          ]
+        },
+        "description": "Получает прогноз характеристик для одного описания вина. Допустимая длина описания — от 10 до 20 000 символов."
+      },
+      "response": []
+    },
+    {
+      "name": "Predict Batch",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"descriptions\": [\n    \"Красное вино с ароматом вишни и пряностей, плотным вкусом и мягкими танинами.\",\n    \"Белое сухое вино с цитрусовым ароматом, свежей кислотностью и лёгким минеральным послевкусием.\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/predict/batch",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "predict",
+            "batch"
+          ]
+        },
+        "description": "Получает прогнозы для массива из 1–100 описаний и возвращает их в исходном порядке."
+      },
+      "response": []
+    },
+    {
+      "name": "Metrics",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "text/plain",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/metrics",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "metrics"
+          ]
+        },
+        "description": "Возвращает технические метрики сервиса в формате Prometheus."
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:8000",
+      "type": "string"
+    }
+  ]
+}
