@@ -13,6 +13,7 @@ def test_clean_text_normalizes_text():
 
 def test_predictor_returns_all_targets():
     predictor = WinePredictor(MODEL_PATH)
+    assert predictor.info()["metadata"]["vectorizer_type"] == "hybrid_char_word"
     result = predictor.predict(
         "Насыщенное красное вино с ароматом вишни, специй и мягкими танинами."
     )
